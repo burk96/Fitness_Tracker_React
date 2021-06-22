@@ -52,8 +52,7 @@ export async function getMe() {
   }
 
   try {
-    const res = await fetch(`${BASE_URL}/users/login`, {
-      method: "GET",
+    const res = await fetch(`${BASE_URL}/users/me`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
