@@ -11,7 +11,7 @@ const ProofOfConcept = (props) => {
         setActivities(activities);
       })
       .catch(console.error);
-  });
+  }, []);
 
   return (
     <ul>
