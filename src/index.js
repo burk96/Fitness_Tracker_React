@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
+import { ProofOfConcept } from "./components";
+
 const App = () => {
-  return <div id="app">Hello, World!</div>;
+  const [activities, setActivities] = useState([]);
+
+  return (
+    <ProofOfConcept activities={activities} setActivities={setActivities} />
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));

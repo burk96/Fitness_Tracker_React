@@ -1,6 +1,8 @@
-export const BASE_URL = "https://calm-lowlands-92047.herokuapp.com/api/";
+export const BASE_URL = "https://calm-lowlands-92047.herokuapp.com/api";
 
-export const BASE_URL_FULLSTACK = "https://fitnesstrac-kr.herokuapp.com/api/";
+export const BASE_URL_FULLSTACK = "https://fitnesstrac-kr.herokuapp.com/api";
+
+// Users
 
 export async function registerUser(username, password) {
   try {
@@ -13,9 +15,7 @@ export async function registerUser(username, password) {
       }),
     });
 
-    const {
-      data: { token },
-    } = await res.json();
+    const { token } = await res.json();
 
     localStorage.setItem("token", JSON.stringify(token));
   } catch (error) {
@@ -34,14 +34,16 @@ export async function loginUser(username, password) {
       }),
     });
 
-    const {
-      data: { token },
-    } = await res.json();
+    const { token } = await res.json();
 
     localStorage.setItem("token", JSON.stringify(token));
   } catch (error) {
     throw error;
   }
+}
+
+export function logoutUser() {
+  localStorage.removeItem("token");
 }
 
 export async function getMe() {
@@ -59,10 +61,74 @@ export async function getMe() {
       },
     });
 
-    const { data } = await res.json();
+    const data = await res.json();
 
     return data;
   } catch (error) {
     throw error;
   }
 }
+
+export async function getRoutinesByUsername(username) {
+  try {
+    const token = localStorage.getItem("token")
+      ? localStorage.getItem("token")
+      : "";
+
+    const res = await fetch(`${BASE_URL}/users/${username}/routines`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Activities
+
+export async function getActivities() {
+  try {
+    const res = await fetch(`${BASE_URL}/activities`);
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function postActivity(name, description) {
+  try {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      return;
+    }
+
+    const res = await fetch(`${BASE_URL}/activities`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ name, description }),
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
+// Routines
+
+// Routine_Activities
