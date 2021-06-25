@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
-import { ProofOfConcept } from "./components";
+import { Header, Activities } from "./components";
 
 const App = () => {
   const [activities, setActivities] = useState([]);
@@ -11,13 +11,12 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path={"/activities"}>
-          <ProofOfConcept
-            activities={activities}
-            setActivities={setActivities}
-          />
+          <Header />
+          <Activities activities={activities} setActivities={setActivities} />
         </Route>
         <Route path={"/"} exact>
-          <Link to={"/activities"}>Activities</Link>
+          <Header />
+          <h3>Welcome Home Fitness Freak</h3>
         </Route>
         <Route>
           <h1>404 Page Not Found</h1>

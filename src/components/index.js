@@ -1,1 +1,2 @@
-export { default as ProofOfConcept } from "./ProofOfConcept.js";
+export { default as Header } from "./Header.js";
+export { default as Activities } from "./Activities.js";
