@@ -7,6 +7,7 @@ import "./Header.css";
 
 const Header = (props) => {
   const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <div id="header">
@@ -16,9 +17,9 @@ const Header = (props) => {
         <Link to={"/routines"}>Routines</Link>
         {token ? <Link to={"/myroutines"}>My Routines</Link> : ""}
         <Link to={"/activities"}>Activities</Link>
-        {token ? (
+        {user ? (
           <a href="/" onClick={logoutUser}>
-            Logout
+            {`Logout (${user.username})`}
           </a>
         ) : (
           <Link to={"/loginregister"}>Login / Register</Link>

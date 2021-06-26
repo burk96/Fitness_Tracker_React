@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { Header, Activities, Routines, LoginRegister } from "./components";
+import {
+  Header,
+  Activities,
+  Routines,
+  LoginRegister,
+  Home,
+} from "./components";
 
 const App = () => {
   const [activities, setActivities] = useState([]);
@@ -24,7 +30,7 @@ const App = () => {
           <LoginRegister />
         </Route>
         <Route path={"/"} exact>
-          <h3>Welcome Home Fitness Freak</h3>
+          <Home />
         </Route>
         <Route>
           <h1>404 Page Not Found</h1>

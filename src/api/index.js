@@ -1,6 +1,6 @@
-export const BASE_URL = "https://calm-lowlands-92047.herokuapp.com/api";
+// export const BASE_URL = "https://calm-lowlands-92047.herokuapp.com/api";
 
-export const BASE_URL_FULLSTACK = "https://fitnesstrac-kr.herokuapp.com/api";
+export const BASE_URL = "https://fitnesstrac-kr.herokuapp.com/api";
 
 // Users
 
@@ -15,9 +15,10 @@ export async function registerUser(username, password) {
       }),
     });
 
-    const { token } = await res.json();
+    const { token, user } = await res.json();
 
     localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("user", JSON.stringify(user));
   } catch (error) {
     throw error;
   }
@@ -34,9 +35,10 @@ export async function loginUser(username, password) {
       }),
     });
 
-    const { token } = await res.json();
+    const { token, user } = await res.json();
 
     localStorage.setItem("token", JSON.stringify(token));
+    localStorage.setItem("user", JSON.stringify(user));
   } catch (error) {
     throw error;
   }
@@ -44,6 +46,7 @@ export async function loginUser(username, password) {
 
 export function logoutUser() {
   localStorage.removeItem("token");
+  localStorage.removeItem("user");
 }
 
 export async function getMe() {
