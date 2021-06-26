@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
-import { Header, Activities } from "./components";
+import { Header, Activities, Routines, LoginRegister } from "./components";
 
 const App = () => {
   const [activities, setActivities] = useState([]);
@@ -10,9 +10,17 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path={"/routines"}>
+          <Header />
+          <Routines />
+        </Route>
         <Route path={"/activities"}>
           <Header />
           <Activities activities={activities} setActivities={setActivities} />
+        </Route>
+        <Route path={"/loginregister"}>
+          <Header />
+          <LoginRegister />
         </Route>
         <Route path={"/"} exact>
           <Header />
