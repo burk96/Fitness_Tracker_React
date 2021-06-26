@@ -14,6 +14,7 @@ const Header = (props) => {
       <span id="links">
         <Link to={"/"}>Home</Link>
         <Link to={"/routines"}>Routines</Link>
+        {token ? <Link to={"/myroutines"}>My Routines</Link> : ""}
         <Link to={"/activities"}>Activities</Link>
         {token ? (
           <a href="/" onClick={logoutUser}>
