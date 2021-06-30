@@ -134,4 +134,16 @@ export async function postActivity(name, description) {
 
 // Routines
 
+export async function getRoutines() {
+  try {
+    const res = await fetch(`${BASE_URL}/routines`);
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 // Routine_Activities

@@ -12,16 +12,17 @@ import {
 
 const App = () => {
   const [activities, setActivities] = useState([]);
+  const [routines, setRoutines] = useState([]);
 
   return (
     <BrowserRouter>
       <Header />
       <Switch>
         <Route path={"/routines"}>
-          <Routines />
+          <Routines routines={routines} setRoutines={setRoutines} />
         </Route>
         <Route path={"/myroutines"}>
-          <Routines />
+          <Routines routines={routines} setRoutines={setRoutines} />
         </Route>
         <Route path={"/activities"}>
           <Activities activities={activities} setActivities={setActivities} />
